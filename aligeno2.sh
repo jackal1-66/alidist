@@ -12,7 +12,6 @@ requires:
   - CRMC
   - EPOS4
   - STARlight
-  - JETSCAPE
 build_requires:
   - alibuild-recipe-tools
 ---
