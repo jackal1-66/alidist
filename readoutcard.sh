@@ -1,6 +1,6 @@
 package: ReadoutCard
 version: "%(tag_basename)s"
-tag: v0.45.4
+tag: v0.46.2
 requires:
   - boost
   - "GCC-Toolchain:(?!osx)"
@@ -10,6 +10,7 @@ requires:
   - libInfoLogger
   - "PDA:(?!osx|.*aarch64)"
   - "Python"
+license: GPL-3.0
 build_requires:
   - alibuild-recipe-tools
   - CMake
@@ -34,7 +35,7 @@ cmake $SOURCEDIR                                                      \
       ${MONITORING_REVISION:+-DMonitoring_ROOT=$MONITORING_ROOT} \
       ${LIBINFOLOGGER_REVISION:+-DInfoLogger_ROOT=$LIBINFOLOGGER_ROOT} \
       ${PDA_REVISION:+-DPDA_ROOT=$PDA_ROOT}                            \
-      ${PYTHON_REVISION:+-DPython3_ROOT_DIR="$PYTHON_ROOT"}            \
+      ${PYTHON_ROOT:+-DPython3_EXECUTABLE="$(which python3)"}      \
       -DCMAKE_EXPORT_COMPILE_COMMANDS=ON                               \
       -DBUILD_SHARED_LIBS=ON
 

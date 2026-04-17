@@ -4,13 +4,23 @@ tag: v2.16-alice1
 source: https://github.com/alisw/LoopTools
 requires:
   - "GCC-Toolchain:(?!osx)"
+license: LGPL-3.0
 build_requires:
   - alibuild-recipe-tools
 ---
 #!/bin/bash -e
 rsync -a "$SOURCEDIR/" ./
 
-./configure --prefix="$INSTALLROOT" --64
+export LOGFILE=${PWD}/configure.log
+
+# adjust some config options based on architecture
+# (--64 does not work on aarch64 and riscv64)
+ARCHFLAG="--64"
+case $ARCHITECTURE in
+  *_aarch64|*_riscv64) ARCHFLAG="" ;;
+esac
+
+./configure --prefix="$INSTALLROOT" ${ARCHFLAG}
 
 make ${JOBS+-j $JOBS}
 make install

@@ -1,12 +1,13 @@
 package: boost
-version: v1.83.0-alice2
-tag: v1.83.0-alice2
+version: v1.90.0-alice1
+tag: v1.90.0-alice1
 source: https://github.com/alisw/boost.git
 requires:
   - "GCC-Toolchain:(?!osx)"
   - Python-modules
   - libpng
   - zlib
+  - "Xcode:osx.*"
 build_requires:
   - lzma
   - bz2
@@ -58,7 +59,7 @@ case $ARCHITECTURE in
   *) TOOLSET=gcc ;;
 esac
 
-rsync -a "$SOURCEDIR"/ "$BUILDDIR"/
+rsync -a --no-specials --no-devices  --chmod=ug=rwX --exclude '**/.git' --delete --delete-excluded "$SOURCEDIR"/ "$BUILDDIR"/
 cd "$BUILDDIR"/tools/build
 # This is to work around an issue in boost < 1.70 where the include path misses
 # the ABI suffix. E.g. ../include/python3 rather than ../include/python3m.
@@ -120,4 +121,4 @@ alibuild-generate-module --lib --cmake > etc/modulefiles/"$PKGNAME"
 cat << EOF >> etc/modulefiles/"$PKGNAME"
 prepend-path ROOT_INCLUDE_PATH \$PKG_ROOT/include
 EOF
-mkdir -p "$INSTALLROOT"/etc/modulefiles && rsync -a --delete etc/modulefiles/ "$INSTALLROOT"/etc/modulefiles
+mkdir -p "$INSTALLROOT"/etc/modulefiles && rsync -a --no-specials --no-devices  --delete etc/modulefiles/ "$INSTALLROOT"/etc/modulefiles

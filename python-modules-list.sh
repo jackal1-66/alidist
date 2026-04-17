@@ -1,9 +1,9 @@
 package: Python-modules-list
 version: "1.0"
+license: Python-2.0
 env:
   PIP_BASE_REQUIREMENTS: |
-    pip == 21.3.1; python_version < '3.12'
-    pip == 24.0; python_version >= '3.12'
+    pip < 26.0
     setuptools == 59.6.0; python_version < '3.12'
     setuptools == 70.0.0; python_version >= '3.12'
     wheel == 0.37.1; python_version < '3.12'
@@ -32,9 +32,6 @@ env:
     PyYAML == 6.0.1
     uproot == 4.1.0
 
-    # Mock is included in the Python standard library as unittest.mock from
-    # 3.3 onwards.
-    mock == 2.0.0; python_version < '3.3'
     responses == 0.10.6
 
     psutil == 5.8.0; python_version < '3.10'
@@ -54,14 +51,13 @@ env:
     scipy; python_version >= '3.13'
 
     Cython == 0.29.16; python_version < '3.8'
-    Cython == 0.29.21; python_version >= '3.8'
+    Cython >= 3.0.0; python_version >= '3.8'
 
     seaborn == 0.9.0; python_version < '3.9'
     seaborn == 0.13.2; python_version >= '3.9'
 
     scikit-learn == 0.20.3; python_version < '3.8'
-    scikit-learn == 0.24.1; python_version >= '3.8' and python_version < '3.11'
-    scikit-learn == 1.3.0; python_version >= '3.11' and python_version < '3.13'
+    scikit-learn == 1.3.0; python_version >= '3.8' and python_version < '3.13'
     scikit-learn; python_version >= '3.13'
 
     sklearn-evaluation == 0.4; python_version < '3.9'
@@ -84,8 +80,8 @@ env:
 
     xgboost == 0.82; python_version < '3.8'
     xgboost == 1.3.3; python_version == '3.8'
-    xgboost == 1.2.0; python_version >= '3.9' and python_version < '3.11'
-    xgboost == 1.7.5; python_version >= '3.11'
+    xgboost == 1.2.0; python_version == '3.9'
+    xgboost == 1.7.5; python_version >= '3.10'
 
     dryable == 1.0.3; python_version < '3.9'
     dryable == 1.0.5; python_version >= '3.9'

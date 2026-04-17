@@ -1,6 +1,7 @@
 package: MPFR
 version: v3.1.3
 tag: v3.1.3
+license: LGPL-3.0
 source: https://github.com/alisw/MPFR.git
 build_requires:
   - "autotools:(slc6|slc7)"
@@ -8,8 +9,9 @@ build_requires:
   - alibuild-recipe-tools
 ---
 #!/bin/sh
-rsync -a --delete --exclude '**/.git' $SOURCEDIR/ ./
-perl -p -i -e 's/ doc / /' Makefile.am
+rsync -a --chmod=ug=rwX --delete --exclude .git --delete-excluded $SOURCEDIR/ .
+sed -i.bak -e 's/ doc / /' Makefile.am
+rm *.bak
 autoreconf -ivf
 
 ./configure --prefix=$INSTALLROOT    \

@@ -1,9 +1,10 @@
 package: Vc
 version: "%(tag_basename)s"
-tag: 1.4.1
+tag: 1.4.5
 source: https://github.com/VcDevel/Vc.git
 requires:
   - "GCC-Toolchain:(?!osx)"
+license: BSD-3-Clause
 build_requires:
   - CMake
   - alibuild-recipe-tools

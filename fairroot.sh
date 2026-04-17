@@ -1,6 +1,7 @@
 package: FairRoot
 version: "v18.4.9-alice3"
 source: https://github.com/alisw/FairRoot
+license: LGPLv3
 requires:
   - generators
   - simulation
@@ -9,7 +10,6 @@ requires:
   - boost
   - protobuf
   - FairLogger
-  - FairMQ
   - "GCC-Toolchain:(?!osx)"
 env:
   VMCWORKDIR: "$FAIRROOT_ROOT/share/fairbase/examples"

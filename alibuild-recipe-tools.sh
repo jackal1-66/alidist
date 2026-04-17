@@ -1,6 +1,7 @@
 package: alibuild-recipe-tools
-version: "0.2.5"
-tag: "v0.2.5"
+version: "v0.3.0"
+tag: "v0.3.0"
+license: GPL-3.0
 source: https://github.com/alisw/alibuild-recipe-tools
 ---
 mkdir -p $INSTALLROOT/bin
@@ -21,6 +22,5 @@ module-whatis "ALICE Modulefile for $PKGNAME $PKGVERSION-@@PKGREVISION@$PKGHASH@
 module load BASE/1.0
 # Our environment
 set ALIBUILD_RECIPE_TOOLS_ROOT \$::env(BASEDIR)/$PKGNAME/\$version
-prepend-path LD_LIBRARY_PATH \$ALIBUILD_RECIPE_TOOLS_ROOT/lib
 prepend-path PATH \$ALIBUILD_RECIPE_TOOLS_ROOT/bin
 EoF

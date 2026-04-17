@@ -1,13 +1,14 @@
 package: lzma
 version: "%(tag_basename)s"
 tag: "v5.2.3"
+license: Public Domain
 source: https://github.com/alisw/liblzma
 build_requires:
   - "autotools:(slc6|slc7)"
   - "GCC-Toolchain:(?!osx)"
 prefer_system: "(?!slc5)"
 prefer_system_check: |
-  printf "#include <lzma.h>\n" | c++ -xc++ - -c -M 2>&1
+  printf "#include <lzma.h>\n" | cc -xc - -I$(brew --prefix xz)/include -c -M 2>&1
 ---
 rsync -a --delete --exclude '**/.git' --delete-excluded $SOURCEDIR/ ./
 ./autogen.sh

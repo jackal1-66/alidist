@@ -1,6 +1,7 @@
 package: ApMon-CPP
 version: "%(tag_basename)s"
 tag: v2.2.8-alice6
+license: Apache-2.0
 source: https://github.com/alisw/apmon-cpp.git
 build_requires:
   - "libtirpc:(?!osx)"
@@ -8,7 +9,7 @@ build_requires:
   - "GCC-Toolchain:(?!osx)"
 ---
 #!/bin/bash -e
-rsync -a --exclude='**/.git' --delete --delete-excluded \
+rsync -a --chmod=ug=rwX --exclude='**/.git' --delete --delete-excluded \
       $SOURCEDIR/ ./
 autoreconf -ivf
 

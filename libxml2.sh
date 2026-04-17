@@ -1,6 +1,7 @@
 package: libxml2
 version: "%(tag_basename)s"
 tag: v2.9.3
+license: MIT
 build_requires:
   - "autotools:(slc6|slc7)"
   - zlib
@@ -13,7 +14,7 @@ prefer_system_check: |
 ---
 #!/bin/sh
 echo "Building ALICE libxml. To avoid this install libxml development package."
-rsync -a $SOURCEDIR/ ./
+rsync -a --chmod=ug=rwX --exclude='**/.git' --delete --delete-excluded "$SOURCEDIR"/ .
 autoreconf -i
 ./configure --disable-static \
             --prefix=$INSTALLROOT \

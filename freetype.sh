@@ -4,6 +4,7 @@ tag: VER-2-10-1
 source: https://github.com/freetype/freetype
 requires:
   - zlib
+license: FTL
 build_requires:
   - "autotools:(slc6|slc7)"
   - alibuild-recipe-tools
@@ -13,7 +14,9 @@ prefer_system_check: |
   if [ $? -ne 0 ]; then printf "FreeType is missing on your system.\n * On RHEL-compatible systems you probably need: freetype freetype-devel\n * On Ubuntu-compatible systems you probably need: libfreetype6 libfreetype6-dev\n"; exit 1; fi
 ---
 #!/bin/bash -ex
-rsync -a --exclude='**/.git' --delete --delete-excluded "$SOURCEDIR/" ./
+rsync -a --chmod=ug=rwX --exclude='**/.git' --delete --delete-excluded "$SOURCEDIR/" ./
+type libtoolize && export LIBTOOLIZE=libtoolize
+type glibtoolize && export LIBTOOLIZE=glibtoolize
 sh autogen.sh
 ./configure --prefix="$INSTALLROOT"              \
             --with-png=no                        \

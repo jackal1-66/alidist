@@ -25,10 +25,6 @@ overrides:
       - Vc
       - ZeroMQ
       - JAliEn-ROOT
-  cgal:
-    version: 4.12.2
-  fastjet:
-    tag: v3.4.1_1.052-alice2
 ---
 # This file is included in any build recipe and it's only used to set
 # environment variables. Which file to actually include can be defined by the

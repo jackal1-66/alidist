@@ -1,6 +1,7 @@
 package: c-ares
 version: "1.18.1"
 tag: cares-1_18_1
+license: MIT
 build_requires:
   - "GCC-Toolchain:(?!osx)"
   - CMake
@@ -8,10 +9,12 @@ source: https://github.com/c-ares/c-ares
 incremental_recipe: |
   make ${JOBS:+-j$JOBS} install
   mkdir -p $INSTALLROOT/etc/modulefiles && rsync -a --delete etc/modulefiles/ $INSTALLROOT/etc/modulefiles
+prepend_path:
+  PKG_CONFIG_PATH: "$C_ARES_ROOT/lib/pkgconfig"
 ---
 #!/bin/bash -e
 
-cmake $SOURCEDIR -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$INSTALLROOT -DCMAKE_INSTALL_LIBDIR=lib
+cmake $SOURCEDIR -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$INSTALLROOT -DCMAKE_INSTALL_LIBDIR=lib
 make ${JOBS:+-j$JOBS} install
 
 case $ARCHITECTURE in
